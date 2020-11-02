@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Navbar from './components/Navbar';
+import QuoteList from './components/QuoteList';
+// const axios = require('axios').default;
+  
 
-function App() {
-  return (
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { data: null };
+  }
+  componentDidMount() {
+    
+    fetch("https://simpsons-quotes-api.herokuapp.com/quotes?count=5")
+    .then((resp) => resp.json())
+    .then((qoutes) => this.setState({data: qoutes}))
+  }
+  render() {
+    //console.log(this.state.data);
+  return ( 
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <QuoteList quotes={this.state.data} />
     </div>
   );
+}
 }
 
 export default App;
