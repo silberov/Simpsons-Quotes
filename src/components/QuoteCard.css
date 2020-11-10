@@ -23,6 +23,8 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  text-align: right;
+  cursor: pointer;
 }
 
 .QuoteCard figcaption p span {

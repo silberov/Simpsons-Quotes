@@ -10,16 +10,21 @@ class App extends React.Component {
     this.state = { data: null };
   }
   componentDidMount() {
-    
-    fetch("https://simpsons-quotes-api.herokuapp.com/quotes?count=5")
+    this.getQoute();
+
+  }
+
+  getQoute = () => {
+    fetch("https://simpsons-quotes-api.herokuapp.com/quotes?count=1")
     .then((resp) => resp.json())
     .then((qoutes) => this.setState({data: qoutes}))
   }
+
   render() {
-    //console.log(this.state.data);
   return ( 
     <div className="App">
       <Navbar />
+      <button onClick={this.getQoute}>New Qoute</button>
       <QuoteList quotes={this.state.data} />
     </div>
   );
